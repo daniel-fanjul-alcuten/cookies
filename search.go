@@ -91,9 +91,9 @@ func (n *Node) ExpandBest(depth int) TransitionPath {
 			}
 			if depth > 1 {
 				tail := transition.ExpandBest(depth - 1)
-				for _, transition := range tail {
-					time += transition.Time
-					production = transition.Production
+				for _, t := range tail {
+					time += t.Time
+					production = t.Production
 					acceleration := (production - n.Production).Divide(time)
 					if best.transition == nil || acceleration > best.acceleration {
 						best = b{transition, acceleration}

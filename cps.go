@@ -1154,7 +1154,7 @@ func (c *Cookieverse) Updates() (updates []Update) {
 		u := Update{&cc, "HeavenlyKey", "HeavenlyKey", 1111111111}
 		updates = append(updates, u)
 	}
-	if !c.KittenHelpers && c.ElderPact {
+	if !c.KittenHelpers {
 		cc := *c
 		cc.KittenHelpers = true
 		u := Update{&cc, "KittenHelpers", "KittenHelpers", 9e6}

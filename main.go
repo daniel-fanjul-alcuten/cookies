@@ -38,6 +38,7 @@ func work() error {
 	depth := flag.Int("d", 4, "the depth")
 	number := flag.Int("n", 2, "the number")
 	limit := flag.Int("l", 1e4, "the limit")
+	seconds := flag.Int("s", 3, "the seconds")
 	flag.Parse()
 
 	input := make(chan string)
@@ -101,6 +102,7 @@ func work() error {
 		lastNodeString := ""
 		var lastMemStats runtime.MemStats
 		for {
+			var show bool
 			select {
 			case n, ok := <-output:
 				if !ok {
@@ -117,10 +119,12 @@ func work() error {
 				}
 				s := nodeString(node)
 				if lastNodeString != s {
-					fmt.Print(s)
-					lastNodeString = s
+					show, lastNodeString = true, s
 				}
-			case <-time.After(5 * time.Second):
+			case <-time.After(time.Duration(*seconds) * time.Second):
+				show = true
+			}
+			if show {
 				var mem runtime.MemStats
 				runtime.ReadMemStats(&mem)
 				fmt.Println("<< MemStats")

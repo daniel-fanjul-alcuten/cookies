@@ -150,6 +150,7 @@ type Cookieverse struct {
 	FigGluttons                                    bool
 	Loreols                                        bool
 	JaffaCakes                                     bool
+	GreasesCups                                    bool
 
 	// wrinklers
 	SkullCookies   bool
@@ -579,6 +580,9 @@ func (c *Cookieverse) NormalMultiplier() (mul Production) {
 		mul += 25
 	}
 	if c.JaffaCakes {
+		mul += 25
+	}
+	if c.GreasesCups {
 		mul += 25
 	}
 	if c.SkullCookies {
@@ -1416,6 +1420,12 @@ func (c *Cookieverse) Updates() (updates []Update) {
 		cc := *c
 		cc.JaffaCakes = true
 		u := Update{&cc, "JaffaCakes", "JaffaCakes", 1e15 - 1}
+		updates = append(updates, u)
+	}
+	if !c.GreasesCups && c.JaffaCakes {
+		cc := *c
+		cc.GreasesCups = true
+		u := Update{&cc, "GreasesCups", "GreasesCups", 1e15 - 1}
 		updates = append(updates, u)
 	}
 	if !c.SkullCookies {

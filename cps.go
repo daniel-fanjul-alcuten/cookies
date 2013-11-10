@@ -1434,37 +1434,37 @@ func (c *Cookieverse) Updates() (updates []Update) {
 		u := Update{&cc, "SkullCookies", "SkullCookies", 444444444444}
 		updates = append(updates, u)
 	}
-	if !c.SlimeCookies && c.SkullCookies {
+	if !c.SlimeCookies {
 		cc := *c
 		cc.SlimeCookies = true
 		u := Update{&cc, "SlimeCookies", "SlimeCookies", 444444444444}
 		updates = append(updates, u)
 	}
-	if !c.EyeballCookies && c.SlimeCookies {
+	if !c.EyeballCookies {
 		cc := *c
 		cc.EyeballCookies = true
 		u := Update{&cc, "EyeballCookies", "EyeballCookies", 444444444444}
 		updates = append(updates, u)
 	}
-	if !c.SpiderCookies && c.EyeballCookies {
+	if !c.SpiderCookies {
 		cc := *c
 		cc.SpiderCookies = true
 		u := Update{&cc, "SpiderCookies", "SpiderCookies", 444444444444}
 		updates = append(updates, u)
 	}
-	if !c.GhostCookies && c.SpiderCookies {
+	if !c.GhostCookies {
 		cc := *c
 		cc.GhostCookies = true
 		u := Update{&cc, "GhostCookies", "GhostCookies", 444444444444}
 		updates = append(updates, u)
 	}
-	if !c.BatCookies && c.GhostCookies {
+	if !c.BatCookies {
 		cc := *c
 		cc.BatCookies = true
 		u := Update{&cc, "BatCookies", "BatCookies", 444444444444}
 		updates = append(updates, u)
 	}
-	if !c.PumpkinCookies && c.BatCookies {
+	if !c.PumpkinCookies {
 		cc := *c
 		cc.PumpkinCookies = true
 		u := Update{&cc, "PumpkinCookies", "PumpkinCookies", 444444444444}

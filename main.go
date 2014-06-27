@@ -71,9 +71,12 @@ func work() error {
 			// fmt.Printf("%s%f portal cps\n", prefix, c.PortalCpS())
 			// fmt.Printf("%s%f time machine cps\n", prefix, c.TimeMachineCpS())
 			// fmt.Printf("%s%f antimatter condenser cps\n", prefix, c.AntimatterCondenserCpS())
+			// fmt.Printf("%s%f prisms cps\n", prefix, c.PrismsCpS())
 			// fmt.Printf("%s%f normal multiplier \n", prefix, c.NormalMultiplier())
 			// fmt.Printf("%s%f heavenly multiplier \n", prefix, c.HeavenlyMultiplier())
 			// fmt.Printf("%s%f multiplier cps \n", prefix, c.MultiplierCpS())
+			// fmt.Printf("%s%f kitten cps \n", prefix, c.KittenCpS())
+			// fmt.Printf("%s%f production \n", prefix, c.Production())
 			cps := c.Production()
 			multiplier := int(cps * 100 / c.BuildingCpS())
 			lucky := 12e2 * cps
@@ -82,9 +85,10 @@ func work() error {
 		}
 		transitionString := func(i int, node *Node, t *Transition) string {
 			cps1, cps2 := node.Production, t.Production
-			lucky := Stock(7 * 12e3 * cps2)
-			return fmt.Sprintf("%02d: %s(%d): -%.2g/%.3g +%.2g in %v\n", i+1,
-				t.Description, len(node.Best), t.Cost, lucky+t.Cost, cps2-cps1, t.Time)
+			lucky := Stock(12e3 * cps2)
+			return fmt.Sprintf("%02d: %s(%d): -%.2g/%.3g/%.3g +%.2g in %v\n", i+1,
+				t.Description, len(node.Best), t.Cost, lucky+t.Cost, 7*lucky+t.Cost,
+				cps2-cps1, t.Time)
 		}
 		nodeString := func(node *Node) string {
 			s := cpsString("< ", node.State.(*Cookieverse), 0)
@@ -95,7 +99,7 @@ func work() error {
 				time += t.Time
 				i, next = i+1, t.Node
 			}
-			s += cpsString("> ", next.State.(*Cookieverse), time)
+			// s += cpsString("> ", next.State.(*Cookieverse), time)
 			return s
 		}
 		node := <-output
